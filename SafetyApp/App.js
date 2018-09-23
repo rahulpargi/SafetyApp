@@ -1,15 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import {createStackNavigator,}  from 'react-navigation';
+import HomeScreen from './Screens/HomeScreen';
+import  FirstScreen from './Screens/FirstScreen';
+import SecondScreen from './Screens/SecondScreen';
+import ThirdScreen from './Screens/ThirdScreen';
 
 export default class App extends React.Component {
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
+    return <RootStack/>;
   }
 }
+
+const RootStack=createStackNavigator({
+  Home:HomeScreen,
+  First:FirstScreen,
+  Second:SecondScreen,
+  Third:ThirdScreen
+},
+{
+  initialRouteName:'Home',
+}
+);
 
 const styles = StyleSheet.create({
   container: {
