@@ -10,6 +10,7 @@ import ThirdScreen from './Screens/ThirdScreen';
 
 export default class App extends React.Component {
   render() {
+    
     return <RootStack/>;
   }
 }
