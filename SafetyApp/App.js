@@ -5,6 +5,8 @@ import HomeScreen from './Screens/HomeScreen';
 import  FirstScreen from './Screens/FirstScreen';
 import SecondScreen from './Screens/SecondScreen';
 import ThirdScreen from './Screens/ThirdScreen';
+//import {Col,Row,Grid} from 'react-native-easy-grid';
+
 
 export default class App extends React.Component {
   render() {
@@ -13,13 +15,13 @@ export default class App extends React.Component {
 }
 
 const RootStack=createStackNavigator({
-  Home:HomeScreen,
+  //Home:HomeScreen,
   First:FirstScreen,
   Second:SecondScreen,
   Third:ThirdScreen
 },
 {
-  initialRouteName:'Home',
+  initialRouteName:'Second',
 }
 );
 
