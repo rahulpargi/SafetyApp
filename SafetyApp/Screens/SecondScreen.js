@@ -1,11 +1,20 @@
 import React,{Component} from 'react';
-import {Text,View,StyleSheet,Button} from 'react-native';
+import {Text,View,StyleSheet,TouchableHighlight,Button} from 'react-native';
 //import { Container, Header, Content, Card, CardItem, Text, Body } from 'native-base';
 
 export default class SecondScreeen extends React.Component{
-    static navigationOptions={
-        title:'Risk Reducation the Hierarchy of Controls(HOC)',
-    };
+    
+  static navigationOptions =({navigation})=> ({
+    title:'HOME',
+    headerRight:(
+        <TouchableHighlight style={{margin:10}} onPress={()=>navigation.navigate('Home')}>
+      <View style={styles.button1}>
+        <Text style={styles.buttonText}>Main Menu</Text>
+      </View>
+    </TouchableHighlight >
+        
+  )
+});
     render(){
         return(
              <View >
@@ -48,4 +57,22 @@ export default class SecondScreeen extends React.Component{
         );
     }
 }
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button1: {      
+      alignItems: 'center',
+      backgroundColor: '#2196F3'
+    },
+    buttonText: {
+      padding: 10,
+      fontSize:16,
+      fontWeight:'bold',      
+      color: 'white'
+      
+    }
+});

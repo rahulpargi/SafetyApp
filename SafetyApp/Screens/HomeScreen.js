@@ -1,32 +1,30 @@
 import React,{Component} from 'react';
-//<<<<<<< HEAD
-
-//import {Col,Row,Grid} from 'react-native-easy-grid';
-//=======
-import {Text,View,TextInput,StyleSheet,Button} from 'react-native';
-//>>>>>>> 6da1922d117f620d54a2085f0aca8e06b22a31f3
-
-
+import {Text,View,TextInput,TouchableHighlight ,StyleSheet,Button} from 'react-native';
 
 export default class HomeScreen extends React.Component{
-    
+    static navigationOptions =({navigation})=> ({
+        title:'HOME',
+        headerRight:(
+            <TouchableHighlight style={{margin:10}} onPress={()=>navigation.navigate('Home')}>
+          <View style={styles.button1}>
+            <Text style={styles.buttonText}>Main Menu</Text>
+          </View>
+        </TouchableHighlight >
+            
+      )
+    });
 
     render(){
        
         return(
-//<<<<<<< HEAD
-   //         <View>
-    //            <Text>Hellofd</Text>
-       //         <Button
-           //         title="Go to First Screen"
-//=======
+
             <View style={styles.container}>  
             
 
             <View style={{margin:150}}>     
                 <Button color="green"
                     title="RAM 5X5"
-//>>>>>>> 6da1922d117f620d54a2085f0aca8e06b22a31f3
+
                     onPress={()=>this.props.navigation.navigate('First')}
                 /></View> 
             </View>
@@ -44,6 +42,17 @@ const styles = StyleSheet.create({
       margin: 100,      
       alignItems: 'center',
       backgroundColor: 'red'
-    }
+    },
+    button1: {      
+        alignItems: 'center',
+        backgroundColor: '#2196F3'
+      },
+      buttonText: {
+        padding: 10,
+        fontSize:16,
+        fontWeight:'bold',      
+        color: 'white'
+        
+      }
     
   });
