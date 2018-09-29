@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
-//import {Text,View,StyleSheet,Button} from 'react-native';
-import { Container, Header, Content, Card, CardItem, Text, Body } from 'native-base';
+import {Text,View,StyleSheet,Button} from 'react-native';
+//import { Container, Header, Content, Card, CardItem, Text, Body } from 'native-base';
 
 export default class SecondScreeen extends React.Component{
     static navigationOptions={
@@ -8,20 +8,20 @@ export default class SecondScreeen extends React.Component{
     };
     render(){
         return(
-            // <View style={styles.container}>
-            //     <Text>
-            //         This is the second Screen
-            //     </Text>
-            //     <Button
-            //      title="RAM FS 5x5"
-            //      onPress={()=>this.props.navigation.navigate('Third')}
-            //     />
-            //     <Button
-            //         title="Back to RAM 5x5 CS"
-            //         onPress={()=>this.props.navigation.navigate('First')}
-            //     />
-            // </View>
-            <Container>
+             <View >
+                 <Text>
+                     This is the second Screen
+                 </Text>
+                 <Button
+                  title="RAM FS 5x5"
+                  onPress={()=>this.props.navigation.navigate('Third')}
+                 />
+                 <Button
+                     title="Back to RAM 5x5 CS"
+                     onPress={()=>this.props.navigation.navigate('First')}
+                 />
+             </View>
+         /*   <Container>
             <Header />
             <Content>
               <Card>
@@ -40,7 +40,7 @@ export default class SecondScreeen extends React.Component{
                 </CardItem>
              </Card>
             </Content>
-          </Container>
+          </Container>*/
             
                 
             

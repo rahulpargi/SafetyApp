@@ -16,13 +16,13 @@ export default class App extends React.Component {
 }
 
 const RootStack=createStackNavigator({
-  //Home:HomeScreen,
+  Home:HomeScreen,
   First:FirstScreen,
   Second:SecondScreen,
   Third:ThirdScreen
 },
 {
-  initialRouteName:'Second',
+  initialRouteName:'First',
 }
 );
 

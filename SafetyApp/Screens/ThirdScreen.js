@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Text,View,StyleSheet,Button} from 'react-native';
-import {Col,Row,Grid} from 'react-native-easy-grid';
+//import {Col,Row,Grid} from 'react-native-easy-grid';
 
 export default class ThirdScreeen extends React.Component{
     static navigationOptions={
