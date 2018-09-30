@@ -9,6 +9,7 @@ import ThirdScreen from './Screens/ThirdScreen';
 
 
 export default class App extends React.Component {
+ 
   render() {
     
     return <RootStack/>;
@@ -16,13 +17,13 @@ export default class App extends React.Component {
 }
 
 const RootStack=createStackNavigator({
-  //Home:HomeScreen,
+  Home:HomeScreen,
   First:FirstScreen,
   Second:SecondScreen,
   Third:ThirdScreen
 },
 {
-  initialRouteName:'Second',
+  initialRouteName:'Home',
 }
 );
 
