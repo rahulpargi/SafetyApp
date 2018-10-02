@@ -1,12 +1,8 @@
 import React,{Component} from 'react';
-<<<<<<< HEAD
-import {Text,View,Button,StyleSheet} from 'react-native';
-import {Col,Row,Grid} from 'react-native-easy-grid';
+import {Text,View,Button,StyleSheet,TextInput,TouchableHighlight} from 'react-native';
 
 
-=======
-import {Text,View,TextInput,TouchableHighlight ,StyleSheet,Button} from 'react-native';
->>>>>>> 146fad466f446e32a2b63e4f7a34e1965cb2a0fe
+
 
 export default class HomeScreen extends React.Component{
     static navigationOptions =({navigation})=> ({
@@ -24,12 +20,6 @@ export default class HomeScreen extends React.Component{
     render(){
        
         return(
-<<<<<<< HEAD
-            <View>
-                <Text>Hellofd</Text>
-                <Button
-                    title="Go to First Screen"
-=======
 
             <View style={styles.container}>  
             
@@ -38,9 +28,10 @@ export default class HomeScreen extends React.Component{
                 <Button color="green"
                     title="RAM 5X5"
 
->>>>>>> 146fad466f446e32a2b63e4f7a34e1965cb2a0fe
                     onPress={()=>this.props.navigation.navigate('First')}
-                /></View> 
+                />
+            </View> 
+            </View>
             
         );
     }
