@@ -6,7 +6,7 @@ import {Text,View,Button,StyleSheet,TextInput,TouchableHighlight} from 'react-na
 
 export default class HomeScreen extends React.Component{
     static navigationOptions =({navigation})=> ({
-        title:'HOME',
+        title:'Select Risk Assessment Matrix(RAM)',
         headerRight:(
             <TouchableHighlight style={{margin:10}} onPress={()=>navigation.navigate('Home')}>
           <View style={styles.button1}>

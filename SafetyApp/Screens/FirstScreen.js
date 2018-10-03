@@ -3,7 +3,7 @@ import {Text,View,StyleSheet,TouchableHighlight,TextInput,ScrollView,Button} fro
 
 export default class SecondScreeen extends React.Component{
     static navigationOptions =({navigation})=> ({
-        title:'RAM 5x5',
+        title:'Semi-Quantitative Risk(5x5) Matrix Example - Current State',
         headerRight:(
             <TouchableHighlight style={{margin:10}} onPress={()=>navigation.navigate('Home')}>
           <View style={styles.button1}>
@@ -71,6 +71,7 @@ export default class SecondScreeen extends React.Component{
         }
         
     render(){
+        const t=this.state.H2Sol;
         
         return(
             
@@ -96,6 +97,7 @@ export default class SecondScreeen extends React.Component{
                     <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.backgroundColor}]} 
                     value={`${this.Calculate(this.state.text1,this.state.text2)}`}
                     />                   
+                    
                     </View>                   
                 </View>   
                 <Text>
@@ -178,14 +180,16 @@ export default class SecondScreeen extends React.Component{
                     onChangeText={(H5text2) => this.setState({H5text2:H5text2,H5text1:this.state.H5text1,H5Sol:this.Calculate(H5text2,this.state.H5text1),H5backgroundColor:this.random(this.Calculate(this.state.H5text1,H5text2))})}
                     />
                     <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H5backgroundColor}]} 
-                    value={`${this.Calculate(this.state.H4text1,this.state.H4text2)}`}
+                    value={`${this.Calculate(this.state.H5text1,this.state.H5text2)}`}
                     />                   
                     </View>                   
-                </View>                                     
+                </View>   
+                <Text>{this.state.H2Sol}</Text>
+                <Text>{this.state.H3Sol}</Text>                                  
                    
                 <Button
                  title="Risk Reduction HOC 5x5"
-                 onPress={()=>this.props.navigation.navigate('Second')}
+                 onPress={()=>this.props.navigation.navigate('Second',{a:this.state.Sol,b1:t,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor})}
                  />
                 
                 </ScrollView>

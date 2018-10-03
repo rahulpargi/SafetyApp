@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
-import { StyleSheet, View ,TextInput,Button} from 'react-native';
+import { Text,View,StyleSheet,TouchableHighlight,TextInput,ScrollView,Button} from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 
-export default class ExampleOne extends Component {
+export default class SecondScreen extends Component {
+  static navigationOptions =({navigation})=> ({
+    title:'Risk Reduction And The Hierarchy Of Controls (HoC)',
+    headerRight:(
+        <TouchableHighlight style={{margin:10}} onPress={()=>navigation.navigate('Home')}>
+      <View style={styles.button1}>
+        <Text style={styles.buttonText}>Main Menu</Text>
+      </View>
+    </TouchableHighlight >
+        
+  )
+});
   constructor(props) {
     super(props);
     this.state = {
@@ -64,10 +75,21 @@ export default class ExampleOne extends Component {
   
 
   render() {
+    const {navigation}=this.props;
+    const a=navigation.getParam('a','12');
+    const b=navigation.getParam('b1','noid');
+    const c=navigation.getParam('c','12');
+    const d=navigation.getParam('d','12');
+    const e=navigation.getParam('e','12');
+    const a1=navigation.getParam('a1','12');
+    const a2=navigation.getParam('a2','12');
+    const a3=navigation.getParam('a3','12');
+    const a4=navigation.getParam('a4','12');
+    const a5=navigation.getParam('a5','12');
   
     const tableHead=['Hazard #', 'Hazard 1', 'Hazard 2', 'Hazard 3','Hazard 4','Hazard 5'];
     const tableData= [
-      ['Risk Level CS','', '', '','',''],
+      ['Risk Level CS',<Text style={{textAlign:'center',backgroundColor:a1}}>{JSON.stringify(a)}</Text>, <Text style={{textAlign:'center',backgroundColor:a2}}>{JSON.stringify(b)}</Text>, <Text style={{textAlign:'center',backgroundColor:a3}}>{JSON.stringify(c)}</Text>,<Text style={{textAlign:'center',backgroundColor:a4}}>{JSON.stringify(d)}</Text>,<Text style={{textAlign:'center',backgroundColor:a5}}>{JSON.stringify(e)}</Text>],
       ['HoC','Eng.', 'Eng.', 'Sub.','Eliminate','Eliminate'],
       ['Severity FS', <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={styles.txtinput} onChangeText={(text1) => this.setState({text1:text1,text2:this.state.text2,Sol:this.Calculate(text1,this.state.text2),backgroundColor:this.random(this.Calculate(text1,this.state.text2))})}
       />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
@@ -110,15 +132,22 @@ export default class ExampleOne extends Component {
           <Rows data={tableData} textStyle={styles.text}/>
         </Table>
         
-       
         
+        <View>
+          <Button title="RAM FS 5x5" onPress={()=>this.props.navigation.navigate('Third',{a:this.state.Sol,b1:this.state.H2Sol,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor})}/>
       </View>
+      <View>
+          <Button title="Back to RAM 5x5 CS" onPress={()=>this.props.navigation.navigate('First')}/>
+      </View>
+        <Text>{JSON.stringify(b)}</Text>
+      </View>
+     
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30 ,justifyContent:'center' },
+  container: { flex: 1, padding: 16, paddingTop: 30 ,justifyContent:'center', backgroundColor: '#fff' },
   head: {  height: 40,  backgroundColor: '#f1f8ff'  },
   wrapper: { flexDirection: 'row' },
   title: { flex: 1, backgroundColor: '#f6f8fa' },
@@ -129,6 +158,17 @@ const styles = StyleSheet.create({
     height: '30%',
     justifyContent: 'center',
     alignItems: 'center'
- }
+ },
+ button1: {      
+  alignItems: 'center',
+  backgroundColor: '#2196F3'
+},
+buttonText: {
+  padding: 10,
+  fontSize:16,
+  fontWeight:'bold',      
+  color: 'white'
+  
+}
 
 });

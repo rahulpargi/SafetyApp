@@ -5,7 +5,7 @@ import HomeScreen from './Screens/HomeScreen';
 import  FirstScreen from './Screens/FirstScreen';
 import SecondScreen from './Screens/SecondScreen';
 import ThirdScreen from './Screens/ThirdScreen';
-//import {Col,Row,Grid} from 'react-native-easy-grid';
+
 
 
 export default class App extends React.Component {
