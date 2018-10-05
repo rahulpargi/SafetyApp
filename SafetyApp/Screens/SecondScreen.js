@@ -19,7 +19,7 @@ export default class SecondScreen extends Component {
     this.state = {
       
       text1:'-',text2:'-',Sol:'2',
-            H2text1:'-',H2text2:'-',H2Sol:'',
+      a:'',b:'',c:'',
             H3text1:'-',H3text2:'-',H3Sol:'',
             H4text1:'-',H4text2:'-',H4Sol:'',
             H5text1:'-',H4text2:'-',H5Sol:'',
@@ -86,15 +86,17 @@ export default class SecondScreen extends Component {
     const a3=navigation.getParam('a3','12');
     const a4=navigation.getParam('a4','12');
     const a5=navigation.getParam('a5','12');
+    console.log(a);
+    console.log(a1);
   
     const tableHead=['Hazard #', 'Hazard 1', 'Hazard 2', 'Hazard 3','Hazard 4','Hazard 5'];
     const tableData= [
       ['Risk Level CS',<Text style={{textAlign:'center',backgroundColor:a1}}>{JSON.stringify(a)}</Text>, <Text style={{textAlign:'center',backgroundColor:a2}}>{JSON.stringify(b)}</Text>, <Text style={{textAlign:'center',backgroundColor:a3}}>{JSON.stringify(c)}</Text>,<Text style={{textAlign:'center',backgroundColor:a4}}>{JSON.stringify(d)}</Text>,<Text style={{textAlign:'center',backgroundColor:a5}}>{JSON.stringify(e)}</Text>],
       ['HoC','Eng.', 'Eng.', 'Sub.','Eliminate','Eliminate'],
       ['Severity FS', <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={styles.txtinput} onChangeText={(text1) => this.setState({text1:text1,text2:this.state.text2,Sol:this.Calculate(text1,this.state.text2),backgroundColor:this.random(this.Calculate(text1,this.state.text2))})}
+      />, <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={styles.txtinput} 
+      onChangeText={(a) => this.setState({a:a,b:this.state.b,c:this.Calculate(a,this.state.b),H2backgroundColor:this.random(this.Calculate(a,this.state.b))})}
       />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H2text1) => this.setState({H2text1:H2text1,H2text2:this.state.H2text2,H2Sol:this.Calculate(H2text1,this.state.H2text2),H2backgroundColor:this.random(this.Calculate(H2text1,this.state.H2text2))})}
-                    />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
                     onChangeText={(H3text1) => this.setState({H3text1:H3text1,H3text2:this.state.H3text2,H2Sol:this.Calculate(H3text1,this.state.H3text2),H3backgroundColor:this.random(this.Calculate(H3text1,this.state.H3text2))})}
                     />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
                     onChangeText={(H4text1) => this.setState({H4text1:H4text1,H4text2:this.state.H4text2,H4Sol:this.Calculate(H4text1,this.state.H4text2),H4backgroundColor:this.random(this.Calculate(H4text1,this.state.H4text2))})}
@@ -105,7 +107,7 @@ export default class SecondScreen extends Component {
       ['Likelihood FS',<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
       onChangeText={(text2) => this.setState({text2:text2,text1:this.state.text1,Sol:this.Calculate(text2,this.state.text1),backgroundColor:this.random(this.Calculate(this.state.text1,text2))})}
       />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-      onChangeText={(H2text2) => this.setState({H2text2:H2text2,H2text1:this.state.H2text1,H2Sol:this.Calculate(H2text2,this.state.H2text1),H2backgroundColor:this.random(this.Calculate(this.state.H2text1,H2text2))})}
+      onChangeText={(b) => this.setState({b:b,a:this.state.a,c:this.Calculate(b,this.state.a),H2backgroundColor:this.random(this.Calculate(this.state.a,b))})}
       /> , <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
       onChangeText={(H3text2) => this.setState({H3text2:H3text2,H3text1:this.state.H3text1,H3Sol:this.Calculate(H3text2,this.state.H3text1),H3backgroundColor:this.random(this.Calculate(this.state.H3text1,H3text2))})}
       /> ,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
@@ -116,13 +118,13 @@ export default class SecondScreen extends Component {
       ['Risk Level FS',<TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.backgroundColor}]} 
       value={`${this.Calculate(this.state.text1,this.state.text2)}`}
       />   , <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H2backgroundColor}]} 
-      value={`${this.Calculate(this.state.H2text1,this.state.H2text2)}`}
+      value={`${this.Calculate(this.state.a,this.state.b)}`}
       />  , <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H3backgroundColor}]} 
       value={`${this.Calculate(this.state.H3text1,this.state.H3text2)}`}
       />  ,<TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H4backgroundColor}]} 
       value={`${this.Calculate(this.state.H4text1,this.state.H4text2)}`}
       /> ,<TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H5backgroundColor}]} 
-      value={`${this.Calculate(this.state.H4text1,this.state.H4text2)}`}
+      value={`${this.Calculate(this.state.H5text1,this.state.H5text2)}`}
       /> ],
     ];
     return (
@@ -134,12 +136,12 @@ export default class SecondScreen extends Component {
         
         
         <View>
-          <Button title="RAM FS 5x5" onPress={()=>this.props.navigation.navigate('Third',{a:this.state.Sol,b1:this.state.H2Sol,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor})}/>
+          <Button title="RAM FS 5x5" onPress={()=>this.props.navigation.navigate('Third',{a:this.state.Sol,b1:this.state.c,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor,b11:a,b2:b,b3:c,b4:d,b5:e,b6:a1,b7:a2,b8:a3,b9:a4,b10:a5})}/>
       </View>
       <View>
           <Button title="Back to RAM 5x5 CS" onPress={()=>this.props.navigation.navigate('First')}/>
       </View>
-        <Text>{JSON.stringify(b)}</Text>
+        
       </View>
      
     )

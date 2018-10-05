@@ -2,24 +2,24 @@ import React, { Component } from 'react';
 import { Text,View,StyleSheet,TouchableHighlight,TextInput,ScrollView,Button} from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 
-export default class ThirdScreen extends Component {
-    static navigationOptions =({navigation})=> ({
-        title:'Semi-Quantitative Risk(5x5) Matrix Example - Future State',
-        headerRight:(
-            <TouchableHighlight style={{margin:10}} onPress={()=>navigation.navigate('Home')}>
-          <View style={styles.button1}>
-            <Text style={styles.buttonText}>Main Menu</Text>
-          </View>
-        </TouchableHighlight >
-            
-      )
-    });
+export default class SecondScreen extends Component {
+  static navigationOptions =({navigation})=> ({
+    title:'Risk Reduction And The Hierarchy Of Controls (HoC)',
+    headerRight:(
+        <TouchableHighlight style={{margin:10}} onPress={()=>navigation.navigate('Home')}>
+      <View style={styles.button1}>
+        <Text style={styles.buttonText}>Main Menu</Text>
+      </View>
+    </TouchableHighlight >
+        
+  )
+});
   constructor(props) {
     super(props);
     this.state = {
       
       text1:'-',text2:'-',Sol:'2',
-            H2text1:'-',H2text2:'-',H2Sol:'',
+      a:'',b:'',c:'',
             H3text1:'-',H3text2:'-',H3Sol:'',
             H4text1:'-',H4text2:'-',H4Sol:'',
             H5text1:'-',H4text2:'-',H5Sol:'',
@@ -76,6 +76,7 @@ export default class ThirdScreen extends Component {
 
   render() {
     const {navigation}=this.props;
+    //First Screen Parameters
     const a=navigation.getParam('a','12');
     const b=navigation.getParam('b1','noid');
     const c=navigation.getParam('c','12');
@@ -86,44 +87,26 @@ export default class ThirdScreen extends Component {
     const a3=navigation.getParam('a3','12');
     const a4=navigation.getParam('a4','12');
     const a5=navigation.getParam('a5','12');
-  
+    //Second Screen Parameters
+    const b1=navigation.getParam('b11','no');
+    const b2=navigation.getParam('b2','noid');
+    const b3=navigation.getParam('b3','no');
+    const b4=navigation.getParam('b4','no');
+    const b5=navigation.getParam('b5','no');
+    const b6=navigation.getParam('b6','no');
+    const b7=navigation.getParam('b7','no');
+    const b8=navigation.getParam('b8','no');
+    const b9=navigation.getParam('b9','no');
+    const b10=navigation.getParam('b10','no');
+    console.log(b10);
     const tableHead=['Hazard #', 'Hazard 1', 'Hazard 2', 'Hazard 3','Hazard 4','Hazard 5'];
     const tableData= [
-      ['Risk Level CS',<Text style={{textAlign:'center',backgroundColor:a1}}>{JSON.stringify(a)}</Text>, <Text style={{textAlign:'center',backgroundColor:a2}}>{JSON.stringify(b)}</Text>, <Text style={{textAlign:'center',backgroundColor:a3}}>{JSON.stringify(c)}</Text>,<Text style={{textAlign:'center',backgroundColor:a4}}>{JSON.stringify(d)}</Text>,<Text style={{textAlign:'center',backgroundColor:a5}}>{JSON.stringify(e)}</Text>],
+      ['Risk Level CS',<Text style={{textAlign:'center',backgroundColor:b6}}>{JSON.stringify(b1)}</Text>, <Text style={{textAlign:'center',backgroundColor:b7}}>{JSON.stringify(b2)}</Text>, <Text style={{textAlign:'center',backgroundColor:b8}}>{JSON.stringify(b3)}</Text>,<Text style={{textAlign:'center',backgroundColor:b9}}>{JSON.stringify(b4)}</Text>,<Text style={{textAlign:'center',backgroundColor:b10}}>{JSON.stringify(b5)}</Text>],
       ['HoC','Eng.', 'Eng.', 'Sub.','Eliminate','Eliminate'],
-      ['Severity FS', <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={styles.txtinput} onChangeText={(text1) => this.setState({text1:text1,text2:this.state.text2,Sol:this.Calculate(text1,this.state.text2),backgroundColor:this.random(this.Calculate(text1,this.state.text2))})}
-      />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H2text1) => this.setState({H2text1:H2text1,H2text2:this.state.H2text2,H2Sol:this.Calculate(H2text1,this.state.H2text2),H2backgroundColor:this.random(this.Calculate(H2text1,this.state.H2text2))})}
-                    />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H3text1) => this.setState({H3text1:H3text1,H3text2:this.state.H3text2,H2Sol:this.Calculate(H3text1,this.state.H3text2),H3backgroundColor:this.random(this.Calculate(H3text1,this.state.H3text2))})}
-                    />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H4text1) => this.setState({H4text1:H4text1,H4text2:this.state.H4text2,H4Sol:this.Calculate(H4text1,this.state.H4text2),H4backgroundColor:this.random(this.Calculate(H4text1,this.state.H4text2))})}
-                    />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H5text1) => this.setState({H5text1:H5text1,H5text2:this.state.H5text2,H5Sol:this.Calculate(H5text1,this.state.H5text2),H5backgroundColor:this.random(this.Calculate(H5text1,this.state.H5text2))})}
-                    />],
+      ['Risk Level FS',<Text style={{textAlign:'center',backgroundColor:a1}}>{JSON.stringify(a)}</Text>, <Text style={{textAlign:'center',backgroundColor:a2}}>{JSON.stringify(b)}</Text>, <Text style={{textAlign:'center',backgroundColor:a3}}>{JSON.stringify(c)}</Text>,<Text style={{textAlign:'center',backgroundColor:a4}}>{JSON.stringify(d)}</Text>,<Text style={{textAlign:'center',backgroundColor:a5}}>{JSON.stringify(e)}</Text>],
       
-      ['Likelihood FS',<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-      onChangeText={(text2) => this.setState({text2:text2,text1:this.state.text1,Sol:this.Calculate(text2,this.state.text1),backgroundColor:this.random(this.Calculate(this.state.text1,text2))})}
-      />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-      onChangeText={(H2text2) => this.setState({H2text2:H2text2,H2text1:this.state.H2text1,H2Sol:this.Calculate(H2text2,this.state.H2text1),H2backgroundColor:this.random(this.Calculate(this.state.H2text1,H2text2))})}
-      /> , <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-      onChangeText={(H3text2) => this.setState({H3text2:H3text2,H3text1:this.state.H3text1,H3Sol:this.Calculate(H3text2,this.state.H3text1),H3backgroundColor:this.random(this.Calculate(this.state.H3text1,H3text2))})}
-      /> ,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-      onChangeText={(H4text2) => this.setState({H4text2:H4text2,H4text1:this.state.H4text1,H4Sol:this.Calculate(H4text2,this.state.H4text1),H4backgroundColor:this.random(this.Calculate(this.state.H4text1,H4text2))})}
-      />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-      onChangeText={(H5text2) => this.setState({H5text2:H5text2,H5text1:this.state.H5text1,H5Sol:this.Calculate(H5text2,this.state.H5text1),H5backgroundColor:this.random(this.Calculate(this.state.H5text1,H5text2))})}
-      />],
-      ['Risk Level FS',<TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.backgroundColor}]} 
-      value={`${this.Calculate(this.state.text1,this.state.text2)}`}
-      />   , <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H2backgroundColor}]} 
-      value={`${this.Calculate(this.state.H2text1,this.state.H2text2)}`}
-      />  , <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H3backgroundColor}]} 
-      value={`${this.Calculate(this.state.H3text1,this.state.H3text2)}`}
-      />  ,<TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H4backgroundColor}]} 
-      value={`${this.Calculate(this.state.H4text1,this.state.H4text2)}`}
-      /> ,<TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H5backgroundColor}]} 
-      value={`${this.Calculate(this.state.H4text1,this.state.H4text2)}`}
-      /> ],
+      ['Risk Reduction',<Text  style={{textAlign:'center'}}>{((b1-a)/b1)*100+"%"}</Text>,<Text  style={{textAlign:'center'}}>{((b2-b)/b2)*100+"%"}</Text>,<Text  style={{textAlign:'center'}}>{((b3-c)/b3)*100+"%"}</Text>,<Text  style={{textAlign:'center'}}>{((b4-d)/b4)*100+"%"}</Text>,<Text  style={{textAlign:'center'}}>{((b5-e)/b5)*100+"%"}</Text>],
+      ['Residual Risk',<Text  style={{textAlign:'center'}}>{(100-((b1-a)/b1)*100)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{(100-((b2-b)/b2)*100)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{(100-((b3-c)/b3)*100)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{(100-((b4-d)/b4)*100)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{(100-((b5-e)/b5)*100)+"%"}</Text>],
     ];
     return (
       <View style={styles.container}>
@@ -132,9 +115,9 @@ export default class ThirdScreen extends Component {
           <Rows data={tableData} textStyle={styles.text}/>
         </Table>
         
-        
-        <View>
-          <Button title="Back to RR 5x5 HoC" onPress={()=>this.props.navigation.navigate('Second')}/>
+       
+      <View>
+          <Button title="Back to RR 5x5 HoC" onPress={()=>this.props.navigation.navigate('First')}/>
       </View>
         
       </View>
@@ -144,7 +127,7 @@ export default class ThirdScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30 ,justifyContent:'center' , backgroundColor: '#fff'},
+  container: { flex: 1, padding: 16, paddingTop: 30 ,justifyContent:'center', backgroundColor: '#fff' },
   head: {  height: 40,  backgroundColor: '#f1f8ff'  },
   wrapper: { flexDirection: 'row' },
   title: { flex: 1, backgroundColor: '#f6f8fa' },

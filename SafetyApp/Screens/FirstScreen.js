@@ -16,8 +16,8 @@ export default class SecondScreeen extends React.Component{
     constructor(props) {
         super(props);
         this.state = {text1:'-',text2:'-',Sol:'',
-            H2text1:'-',H2text2:'-',H2Sol:'',
-            H3text1:'-',H3text2:'-',H3Sol:'',
+           a:'',b:'',c:'',
+           H3text1:'-',H3text2:'-',H3Sol:'',
             H4text1:'-',H4text2:'-',H4Sol:'',
             H5text1:'-',H4text2:'-',H5Sol:''
         };
@@ -100,7 +100,7 @@ export default class SecondScreeen extends React.Component{
                     
                     </View>                   
                 </View>   
-                <Text>
+                <Text style={{marginTop:30}}>
                     HAZARD 2
                 </Text>
                 <View style={{flex:1.5,flexDirection:"row",justifyContent:"space-between",padding:20}}>
@@ -110,17 +110,19 @@ export default class SecondScreeen extends React.Component{
                     <Text style={{margin:20}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H2text1) => this.setState({H2text1:H2text1,H2text2:this.state.H2text2,H2Sol:this.Calculate(H2text1,this.state.H2text2),H2backgroundColor:this.random(this.Calculate(H2text1,this.state.H2text2))})}
+                    <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={styles.txtinput} 
+                    onChangeText={(a) => this.setState({a:a,b:this.state.b,c:this.Calculate(a,this.state.b),H2backgroundColor:this.random(this.Calculate(a,this.state.b))})}
                     />
                     <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H2text2) => this.setState({H2text2:H2text2,H2text1:this.state.H2text1,H2Sol:this.Calculate(H2text2,this.state.H2text1),H2backgroundColor:this.random(this.Calculate(this.state.H2text1,H2text2))})}
+                    onChangeText={(b) => this.setState({b:b,a:this.state.a,c:this.Calculate(b,this.state.a),H2backgroundColor:this.random(this.Calculate(this.state.a,b))})}
                     />
                     <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H2backgroundColor}]} 
-                    value={`${this.Calculate(this.state.H2text1,this.state.H2text2)}`}
-                    />                   
+                    value={`${this.Calculate(this.state.a,this.state.b)}`}
+                    />                  
+                    
                     </View>                   
-                </View>     
+                </View>   
+                  
                 <Text>
                     HAZARD 3
                 </Text>
@@ -184,12 +186,11 @@ export default class SecondScreeen extends React.Component{
                     />                   
                     </View>                   
                 </View>   
-                <Text>{this.state.H2Sol}</Text>
-                <Text>{this.state.H3Sol}</Text>                                  
+                                                 
                    
                 <Button
                  title="Risk Reduction HOC 5x5"
-                 onPress={()=>this.props.navigation.navigate('Second',{a:this.state.Sol,b1:t,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor})}
+                 onPress={()=>this.props.navigation.navigate('Second',{a:this.state.Sol,b1:this.state.c,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor})}
                  />
                 
                 </ScrollView>
