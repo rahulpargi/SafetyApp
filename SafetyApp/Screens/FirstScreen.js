@@ -1,17 +1,28 @@
 import React,{Component} from 'react';
-import {Text,View,StyleSheet,TouchableHighlight,TextInput,ScrollView,Button} from 'react-native'
+import {Text,View,StyleSheet,TouchableHighlight,TextInput,Keyboard,ScrollView,Button} from 'react-native'
+
+import {Header,Icon} from 'react-native-elements'
 
 export default class SecondScreeen extends React.Component{
     static navigationOptions =({navigation})=> ({
-        title:'Semi-Quantitative Risk(5x5) Matrix Example - Current State',
-        headerRight:(
-            <TouchableHighlight style={{margin:10}} onPress={()=>navigation.navigate('Home')}>
-          <View style={styles.button1}>
-            <Text style={styles.buttonText}>Main Menu</Text>
-          </View>
-        </TouchableHighlight >
-            
-      )
+       
+        
+        header:(<Header
+            statusBarProps={{ barStyle: 'light-content' }}
+            barStyle="light-content" // or directly
+            outerContainerStyles={{height:90}}
+            leftComponent={<Icon name="arrow-back" color="#fff" underlayColor='transparent' onPress={()=>navigation.navigate('Home')}></Icon>}
+            centerComponent={{ text: 'RAM CS 5x5', style: { color: '#fff',fontWeight:"bold",fontSize:16 } }}
+            containerStyle={{
+              backgroundColor: '#3D6DCC',
+              justifyContent: 'space-around',
+             
+            }}
+            rightComponent={<Icon name="home" color="#fff" underlayColor='transparent' onPress={()=>navigation.navigate('Home')}></Icon>}
+          />)
+      
+        
+        
     });
     constructor(props) {
         super(props);
@@ -88,7 +99,7 @@ export default class SecondScreeen extends React.Component{
                     <Text style={{margin:20}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={styles.txtinput} 
+                    <TextInput keyboardType='numeric' onSubmitEditing={Keyboard.dismiss} underlineColorAndroid='transparent' style={styles.txtinput} 
                     onChangeText={(text1) => this.setState({text1:text1,text2:this.state.text2,Sol:this.Calculate(text1,this.state.text2),backgroundColor:this.random(this.Calculate(text1,this.state.text2))})}
                     />
                     <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
@@ -188,10 +199,14 @@ export default class SecondScreeen extends React.Component{
                 </View>   
                                                  
                    
-                <Button
-                 title="Risk Reduction HOC 5x5"
+                <Button style={{padding:30,marginBottom:20}}
+                 title="Risk Reduction HOc 5x5"
                  onPress={()=>this.props.navigation.navigate('Second',{a:this.state.Sol,b1:this.state.c,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor})}
                  />
+
+                 <View style={{height:40}}>
+
+                 </View>
                 
                 </ScrollView>
             

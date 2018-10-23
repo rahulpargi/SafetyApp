@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import { Text,View,StyleSheet,TouchableHighlight,TextInput,ScrollView,Button} from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
+import {Header, Icon} from 'react-native-elements'
 
 export default class SecondScreen extends Component {
   static navigationOptions =({navigation})=> ({
-    title:'Risk Reduction And The Hierarchy Of Controls (HoC)',
-    headerRight:(
-        <TouchableHighlight style={{margin:10}} onPress={()=>navigation.navigate('Home')}>
-      <View style={styles.button1}>
-        <Text style={styles.buttonText}>Main Menu</Text>
-      </View>
-    </TouchableHighlight >
-        
-  )
+    header:(<Header
+      statusBarProps={{ barStyle: 'light-content' }}
+      barStyle="light-content" // or directly
+      outerContainerStyles={{height:90}}
+      leftComponent={<Icon name="arrow-back" color="#fff" underlayColor='transparent' onPress={()=>navigation.navigate('Second')}></Icon>}
+      centerComponent={{ text: 'RAM CS 5x5', style: { color: '#fff',fontWeight:"bold",fontSize:16 } }}
+      containerStyle={{
+        backgroundColor: '#3D6DCC',
+        justifyContent: 'space-around',
+       
+      }}
+      rightComponent={<Icon name="home" color="#fff" underlayColor='transparent' onPress={()=>navigation.navigate('Home')}></Icon>}
+    />)
 });
   constructor(props) {
     super(props);
