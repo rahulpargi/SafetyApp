@@ -3,14 +3,14 @@ import { Text,View,StyleSheet,TouchableHighlight,TextInput,ScrollView,Button} fr
 import { Table, Row, Rows } from 'react-native-table-component';
 import {Header, Icon} from 'react-native-elements'
 
-export default class SecondScreen extends Component {
+export default class ThirdScreen extends Component {
   static navigationOptions =({navigation})=> ({
     header:(<Header
       statusBarProps={{ barStyle: 'light-content' }}
       barStyle="light-content" // or directly
       outerContainerStyles={{height:90}}
       leftComponent={<Icon name="arrow-back" color="#fff" underlayColor='transparent' onPress={()=>navigation.navigate('Second')}></Icon>}
-      centerComponent={{ text: 'RAM CS 5x5', style: { color: '#fff',fontWeight:"bold",fontSize:16 } }}
+      centerComponent={{ text: 'RAM FS 5x5', style: { color: '#fff',fontWeight:"bold",fontSize:16 } }}
       containerStyle={{
         backgroundColor: '#3D6DCC',
         justifyContent: 'space-around',

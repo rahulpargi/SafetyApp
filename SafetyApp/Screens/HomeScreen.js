@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {Switch,Text,View,ScrollView,TouchableOpacity,Image,Button,StyleSheet,TextInput,TouchableHighlight} from 'react-native';
 import {Header, Icon} from 'react-native-elements'
 
+
 import MyView from './MyView';
 
 export default class HomeScreen extends React.Component{
@@ -9,9 +10,11 @@ export default class HomeScreen extends React.Component{
         super(props);
         this.state = {
           isHidden: true,
+          display:false
         };
       }
-    
+  
+        
     static navigationOptions =({navigation})=> ({
         
           headerStyle: {display:"none"},
@@ -89,6 +92,7 @@ export default class HomeScreen extends React.Component{
             </View>
 
             </View></MyView>
+            
             
             </View>
             

@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import { Text,View,StyleSheet,TouchableHighlight,TextInput,ScrollView,Button} from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 
+import {Header,Icon} from 'react-native-elements'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 
 export default class SecondScreen extends Component {
   static navigationOptions =({navigation})=> ({
+   
     header:(<Header
       statusBarProps={{ barStyle: 'light-content' }}
       barStyle="light-content" // or directly
       outerContainerStyles={{height:90}}
       leftComponent={<Icon name="arrow-back" color="#fff" underlayColor='transparent' onPress={()=>navigation.navigate('First')}></Icon>}
-      centerComponent={{ text: 'RAM CS 5x5', style: { color: '#fff',fontWeight:"bold",fontSize:16 } }}
+      centerComponent={{ text: 'RR HoC 5x5', style: { color: '#fff',fontWeight:"bold",fontSize:16 } }}
       containerStyle={{
         backgroundColor: '#3D6DCC',
         justifyContent: 'space-around',
@@ -96,28 +100,28 @@ export default class SecondScreen extends Component {
   
     const tableHead=['Hazard #', 'Hazard 1', 'Hazard 2', 'Hazard 3','Hazard 4','Hazard 5'];
     const tableData= [
-      ['Risk Level CS',<Text style={{textAlign:'center',backgroundColor:a1}}>{JSON.stringify(a)}</Text>, <Text style={{textAlign:'center',backgroundColor:a2}}>{JSON.stringify(b)}</Text>, <Text style={{textAlign:'center',backgroundColor:a3}}>{JSON.stringify(c)}</Text>,<Text style={{textAlign:'center',backgroundColor:a4}}>{JSON.stringify(d)}</Text>,<Text style={{textAlign:'center',backgroundColor:a5}}>{JSON.stringify(e)}</Text>],
+      ['Risk Level CS',<Text style={{textAlign:'center',backgroundColor:a1,textAlign:'center'}}>{JSON.stringify(a)}</Text>, <Text style={{textAlign:'center',backgroundColor:a2}}>{JSON.stringify(b)}</Text>, <Text style={{textAlign:'center',backgroundColor:a3}}>{JSON.stringify(c)}</Text>,<Text style={{textAlign:'center',backgroundColor:a4}}>{JSON.stringify(d)}</Text>,<Text style={{textAlign:'center',backgroundColor:a5}}>{JSON.stringify(e)}</Text>],
       ['HoC','Eng.', 'Eng.', 'Sub.','Eliminate','Eliminate'],
-      ['Severity FS', <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={styles.txtinput} onChangeText={(text1) => this.setState({text1:text1,text2:this.state.text2,Sol:this.Calculate(text1,this.state.text2),backgroundColor:this.random(this.Calculate(text1,this.state.text2))})}
-      />, <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={styles.txtinput} 
+      ['Severity FS', <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={{textAlign:'center'}} onChangeText={(text1) => this.setState({text1:text1,text2:this.state.text2,Sol:this.Calculate(text1,this.state.text2),backgroundColor:this.random(this.Calculate(text1,this.state.text2))})}
+      />, <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={{textAlign:'center'}} 
       onChangeText={(a) => this.setState({a:a,b:this.state.b,c:this.Calculate(a,this.state.b),H2backgroundColor:this.random(this.Calculate(a,this.state.b))})}
-      />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
+      />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={{textAlign:'center'}} 
                     onChangeText={(H3text1) => this.setState({H3text1:H3text1,H3text2:this.state.H3text2,H2Sol:this.Calculate(H3text1,this.state.H3text2),H3backgroundColor:this.random(this.Calculate(H3text1,this.state.H3text2))})}
-                    />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
+                    />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={{textAlign:'center'}}
                     onChangeText={(H4text1) => this.setState({H4text1:H4text1,H4text2:this.state.H4text2,H4Sol:this.Calculate(H4text1,this.state.H4text2),H4backgroundColor:this.random(this.Calculate(H4text1,this.state.H4text2))})}
-                    />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
+                    />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={{textAlign:'center'}}
                     onChangeText={(H5text1) => this.setState({H5text1:H5text1,H5text2:this.state.H5text2,H5Sol:this.Calculate(H5text1,this.state.H5text2),H5backgroundColor:this.random(this.Calculate(H5text1,this.state.H5text2))})}
                     />],
       
-      ['Likelihood FS',<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
+      ['Likelihood FS',<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={{textAlign:'center'}}
       onChangeText={(text2) => this.setState({text2:text2,text1:this.state.text1,Sol:this.Calculate(text2,this.state.text1),backgroundColor:this.random(this.Calculate(this.state.text1,text2))})}
-      />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
+      />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={{textAlign:'center'}}
       onChangeText={(b) => this.setState({b:b,a:this.state.a,c:this.Calculate(b,this.state.a),H2backgroundColor:this.random(this.Calculate(this.state.a,b))})}
-      /> , <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
+      /> , <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={{textAlign:'center'}}
       onChangeText={(H3text2) => this.setState({H3text2:H3text2,H3text1:this.state.H3text1,H3Sol:this.Calculate(H3text2,this.state.H3text1),H3backgroundColor:this.random(this.Calculate(this.state.H3text1,H3text2))})}
-      /> ,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
+      /> ,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={{textAlign:'center'}}
       onChangeText={(H4text2) => this.setState({H4text2:H4text2,H4text1:this.state.H4text1,H4Sol:this.Calculate(H4text2,this.state.H4text1),H4backgroundColor:this.random(this.Calculate(this.state.H4text1,H4text2))})}
-      />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
+      />,<TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={{textAlign:'center'}}
       onChangeText={(H5text2) => this.setState({H5text2:H5text2,H5text1:this.state.H5text1,H5Sol:this.Calculate(H5text2,this.state.H5text1),H5backgroundColor:this.random(this.Calculate(this.state.H5text1,H5text2))})}
       />],
       ['Risk Level FS',<TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.backgroundColor}]} 
@@ -133,6 +137,12 @@ export default class SecondScreen extends Component {
       /> ],
     ];
     return (
+      <KeyboardAwareScrollView
+      style={{ backgroundColor: '#4c69a5' }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={false}
+    >
       <View style={styles.container}>
         <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
           <Row data={tableHead} style={styles.head} textStyle={styles.text}/>
@@ -148,6 +158,7 @@ export default class SecondScreen extends Component {
       </View>
         
       </View>
+      </KeyboardAwareScrollView>
      
     )
   }
