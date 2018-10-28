@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text,View,StyleSheet,TouchableHighlight,TextInput,ScrollView,Button} from 'react-native';
 import { Table, Row, Rows } from 'react-native-table-component';
 import {Header, Icon} from 'react-native-elements'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export default class ThirdScreen extends Component {
   static navigationOptions =({navigation})=> ({
@@ -23,7 +24,7 @@ export default class ThirdScreen extends Component {
     super(props);
     this.state = {
       
-      text1:'-',text2:'-',Sol:'2',
+      text1:'-',text2:'-',Sol:'',
       a:'',b:'',c:'',
             H3text1:'-',H3text2:'-',H3Sol:'',
             H4text1:'-',H4text2:'-',H4Sol:'',
@@ -108,12 +109,18 @@ export default class ThirdScreen extends Component {
     const tableData= [
       ['Risk Level CS',<Text style={{textAlign:'center',backgroundColor:b6}}>{JSON.stringify(b1)}</Text>, <Text style={{textAlign:'center',backgroundColor:b7}}>{JSON.stringify(b2)}</Text>, <Text style={{textAlign:'center',backgroundColor:b8}}>{JSON.stringify(b3)}</Text>,<Text style={{textAlign:'center',backgroundColor:b9}}>{JSON.stringify(b4)}</Text>,<Text style={{textAlign:'center',backgroundColor:b10}}>{JSON.stringify(b5)}</Text>],
       ['HoC','Eng.', 'Eng.', 'Sub.','Eliminate','Eliminate'],
-      ['Risk Level FS',<Text style={{textAlign:'center',backgroundColor:a1}}>{JSON.stringify(a)}</Text>, <Text style={{textAlign:'center',backgroundColor:a2}}>{JSON.stringify(b)}</Text>, <Text style={{textAlign:'center',backgroundColor:a3}}>{JSON.stringify(c)}</Text>,<Text style={{textAlign:'center',backgroundColor:a4}}>{JSON.stringify(d)}</Text>,<Text style={{textAlign:'center',backgroundColor:a5}}>{JSON.stringify(e)}</Text>],
+      ['Risk Level FS',<Text style={{textAlign:'center',backgroundColor:a1}}>{a}</Text>, <Text style={{textAlign:'center',backgroundColor:a2}}>{b}</Text>, <Text style={{textAlign:'center',backgroundColor:a3}}>{c}</Text>,<Text style={{textAlign:'center',backgroundColor:a4}}>{d}</Text>,<Text style={{textAlign:'center',backgroundColor:a5}}>{e}</Text>],
       
-      ['Risk Reduction',<Text  style={{textAlign:'center'}}>{((b1-a)/b1)*100+"%"}</Text>,<Text  style={{textAlign:'center'}}>{((b2-b)/b2)*100+"%"}</Text>,<Text  style={{textAlign:'center'}}>{((b3-c)/b3)*100+"%"}</Text>,<Text  style={{textAlign:'center'}}>{((b4-d)/b4)*100+"%"}</Text>,<Text  style={{textAlign:'center'}}>{((b5-e)/b5)*100+"%"}</Text>],
-      ['Residual Risk',<Text  style={{textAlign:'center'}}>{(100-((b1-a)/b1)*100)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{(100-((b2-b)/b2)*100)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{(100-((b3-c)/b3)*100)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{(100-((b4-d)/b4)*100)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{(100-((b5-e)/b5)*100)+"%"}</Text>],
+      ['Risk Reduction',<Text  style={{textAlign:'center'}}>{parseFloat(((b1-a)/b1)*100||0).toFixed(2)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{parseFloat(((b2-b)/b2)*100||0).toFixed(2)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{parseFloat(((b3-c)/b3)*100||0).toFixed(2)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{parseFloat(((b4-d)/b4)*100||0).toFixed(2)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{parseFloat(((b5-e)/b5)*100||0).toFixed(2)+"%"}</Text>],
+      ['Residual Risk',<Text  style={{textAlign:'center'}}>{parseFloat((100-((b1-a)/b1)*100)||0).toFixed(2)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{parseFloat((100-((b2-b)/b2)*100)||0).toFixed(2)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{parseFloat((100-((b3-c)/b3)*100)||0).toFixed(2)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{parseFloat((100-((b4-d)/b4)*100)||0).toFixed(2)+"%"}</Text>,<Text  style={{textAlign:'center'}}>{parseFloat((100-((b5-e)/b5)*100)||0).toFixed(2)+"%"}</Text>],
     ];
     return (
+      <KeyboardAwareScrollView
+      style={{ backgroundColor: '#4c69a5' }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      contentContainerStyle={styles.container}
+      scrollEnabled={false}
+    >
       <View style={styles.container}>
         <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
           <Row data={tableHead} style={styles.head} textStyle={styles.text}/>
@@ -126,13 +133,14 @@ export default class ThirdScreen extends Component {
       </View>
         
       </View>
+      </KeyboardAwareScrollView>
      
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30 ,justifyContent:'center', backgroundColor: '#fff' },
+  container: { flex: 1, padding: 16, paddingTop: 30 ,justifyContent:'space-evenly', backgroundColor: '#fff' ,flexDirection:'column' },
   head: {  height: 40,  backgroundColor: '#f1f8ff'  },
   wrapper: { flexDirection: 'row' },
   title: { flex: 1, backgroundColor: '#f6f8fa' },

@@ -27,7 +27,7 @@ export default class SecondScreen extends Component {
     super(props);
     this.state = {
       
-      text1:'-',text2:'-',Sol:'2',
+      text1:'-',text2:'-',Sol:'',
       a:'',b:'',c:'',
             H3text1:'-',H3text2:'-',H3Sol:'',
             H4text1:'-',H4text2:'-',H4Sol:'',
@@ -149,14 +149,12 @@ export default class SecondScreen extends Component {
           <Rows data={tableData} textStyle={styles.text}/>
         </Table>
         
-        
-        <View>
-          <Button title="RAM FS 5x5" onPress={()=>this.props.navigation.navigate('Third',{a:this.state.Sol,b1:this.state.c,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor,b11:a,b2:b,b3:c,b4:d,b5:e,b6:a1,b7:a2,b8:a3,b9:a4,b10:a5})}/>
-      </View>
-      <View>
-          <Button title="Back to RAM 5x5 CS" onPress={()=>this.props.navigation.navigate('First')}/>
-      </View>
-        
+          <View >
+            <Button title="RAM FS 5x5" onPress={()=>this.props.navigation.navigate('Third',{a:this.state.Sol,b1:this.state.c,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor,b11:a,b2:b,b3:c,b4:d,b5:e,b6:a1,b7:a2,b8:a3,b9:a4,b10:a5})}/>
+          </View>
+          <View >
+            <Button title="Back to RAM 5x5 CS" onPress={()=>this.props.navigation.navigate('First')}/>
+          </View>
       </View>
       </KeyboardAwareScrollView>
      
@@ -165,7 +163,8 @@ export default class SecondScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 16, paddingTop: 30 ,justifyContent:'center', backgroundColor: '#fff' },
+  container: { flex: 1, padding: 16, paddingTop: 20 ,justifyContent:'space-between', backgroundColor: '#fff',flexDirection:'column' },
+  
   head: {  height: 40,  backgroundColor: '#f1f8ff'  },
   wrapper: { flexDirection: 'row' },
   title: { flex: 1, backgroundColor: '#f6f8fa' },
