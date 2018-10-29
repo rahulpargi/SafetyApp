@@ -95,8 +95,7 @@ export default class SecondScreen extends Component {
     const a3=navigation.getParam('a3','12');
     const a4=navigation.getParam('a4','12');
     const a5=navigation.getParam('a5','12');
-    console.log(a);
-    console.log(a1);
+   
   
     const tableHead=['Hazard #', 'Hazard 1', 'Hazard 2', 'Hazard 3','Hazard 4','Hazard 5'];
     const tableData= [

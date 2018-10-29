@@ -1,20 +1,19 @@
 import React,{Component} from 'react';
-import {Switch,Text,View,ScrollView,TouchableOpacity,Image,Button,StyleSheet,TextInput,TouchableHighlight} from 'react-native';
+import {Switch,Text,View,KeyboardAvoidingView,ScrollView,TouchableOpacity,Image,Button,StyleSheet,TextInput,TouchableHighlight} from 'react-native';
 import {Header, Icon} from 'react-native-elements'
-
+import DatePicker from 'react-native-datepicker';
 
 import MyView from './MyView';
+
 
 export default class HomeScreen extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
           isHidden: true,
-          display:false
         };
       }
-  
-        
+    
     static navigationOptions =({navigation})=> ({
         
           headerStyle: {display:"none"},
@@ -32,11 +31,31 @@ export default class HomeScreen extends React.Component{
     render(){
        
         return(
+            <ScrollView >
             
-
             <View style={styles.container}>  
            
             <Text style={styles.Heading}>Risk Assessment Matrix</Text>
+            
+           <TextInput placeholder="Title"  underlineColorAndroid='transparent'
+            style={styles.txt}></TextInput> 
+            <TextInput placeholder="User Name" underlineColorAndroid='transparent'
+            style={styles.txt}></TextInput>
+            
+           <DatePicker 
+           
+        style={{width:200,backgroundColor:"#fff",marginTop:10}}
+        date={this.state.date}
+        showIcon={false}    
+        placeholder="Select date"
+        format="YYYY-MM-DD"
+        minDate="2000-01-01"
+        maxDate="2020-01-31"
+        confirmBtnText="Confirm"
+        cancelBtnText="Cancel"    
+        onDateChange={(date) => {this.setState({date: date})}} 
+    
+         />
             
             <TouchableHighlight  onPress={()=>this.props.navigation.navigate('First')} style={{alignItems:'center',justifyContent:'center',padding:20,backgroundColor:'#4286f4',
                                  borderRadius: 40,
@@ -44,10 +63,12 @@ export default class HomeScreen extends React.Component{
                                  borderColor: '#fff',
                                  width:160,
                                 margin:20,
-                                marginTop:250
+                                marginTop:100
                             
                                 }}>
+                                
             <Text style={{fontSize:18,color:'#fff'}}>RAM 5x5</Text></TouchableHighlight>
+            
             
             <TouchableHighlight  onPress={(isHidden) => this.setState({isHidden:false})}  style={{alignItems:'center',justifyContent:'center',padding:20,backgroundColor:'#4286f4',
                                  borderRadius: 40,
@@ -63,14 +84,14 @@ export default class HomeScreen extends React.Component{
                 <View  style={{height:500,width:300,backgroundColor:'green',position:'absolute',marginTop:80,zIndex:2,borderWidth: 3,
                                  borderColor: 'black'}}>
             <Text style={{color:'#fff',fontSize:18,fontWeight:'bold',marginRight:10,alignSelf: 'center'}}>INSTRUCTIONS</Text>
-            <Text   
-            style={styles.bbtn   
-            }
+            <TouchableHighlight underlayColor="#fff" style={styles.bbtn}>
+            <Text   style={{color:'#fff',fontSize:20,fontWeight:'bold'}}
+            
             
             onPress={() => {
                 this.setState({ isHidden: true });
             }}
-            >X</Text>
+            >X</Text></TouchableHighlight>
             <View style={{flex:1,backgroundColor:'#fff',borderRadius: 0,
                                  borderTopWidth: 3,
                                  borderColor: 'black'}}><ScrollView>
@@ -93,8 +114,9 @@ export default class HomeScreen extends React.Component{
 
             </View></MyView>
             
-            
             </View>
+            </ScrollView>
+           
             
         );
     }
@@ -107,12 +129,22 @@ const styles = StyleSheet.create({
         alignItems: 'center',       
     },
     Heading:{
-        marginTop:80,
+        marginTop:60,
+        marginBottom:20,
         fontSize:24,
         fontWeight:'600',
         fontStyle:'italic',
         color:'#fff'
     },
+    txt:{
+        height: 40,
+        width:200,
+        fontSize:18,
+        textAlign:'center',
+        margin:10,
+        backgroundColor: '#fff'
+        
+      },
     button: {
       margin: 100,      
       alignItems: 'center',
@@ -130,6 +162,6 @@ const styles = StyleSheet.create({
         color: 'white'
         
       },
-      bbtn:{position:'absolute',color:'#fff',fontSize:18,fontWeight:'bold',right:10,alignSelf: 'flex-end'}
+      bbtn:{position:'absolute',right:0.1,alignItems:"center",alignSelf: 'flex-end',width:30}
     
   });

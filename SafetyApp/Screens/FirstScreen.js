@@ -2,17 +2,15 @@ import React,{Component} from 'react';
 import {Text,View,StyleSheet,TouchableHighlight,TextInput,Keyboard,ScrollView,Button} from 'react-native'
 
 import {Header,Icon} from 'react-native-elements'
-import MyView from './MyView';
 
-export default class FirstScreeen extends React.Component{
-    
+export default class SecondScreeen extends React.Component{
     static navigationOptions =({navigation})=> ({
        
         
         header:(<Header
             statusBarProps={{ barStyle: 'light-content' }}
             barStyle="light-content" // or directly
-            outerContainerStyles={{height:90}}
+            outerContainerStyles={{height:80}}
             leftComponent={<Icon name="arrow-back" color="#fff" underlayColor='transparent' onPress={()=>navigation.navigate('Home')}></Icon>}
             centerComponent={{ text: 'RAM CS 5x5', style: { color: '#fff',fontWeight:"bold",fontSize:16 } }}
             containerStyle={{
@@ -32,8 +30,7 @@ export default class FirstScreeen extends React.Component{
            a:'',b:'',c:'',
            H3text1:'-',H3text2:'-',H3Sol:'',
             H4text1:'-',H4text2:'-',H4Sol:'',
-            H5text1:'-',H4text2:'-',H5Sol:'',
-            isHidden:true,
+            H5text1:'-',H4text2:'-',H5Sol:''
         };
         this.state = {backgroundColor:'#fff',H2backgroundColor:'#fff',H3backgroundColor:'#fff',
                     H4backgroundColor:'#fff',H5backgroundColor:'#fff'
@@ -56,7 +53,7 @@ export default class FirstScreeen extends React.Component{
           else if(Sol<9 && Sol>=6){
             return "#e5df27"
           }
-          else if(Sol<=4 && Sol>=1)
+          else if(Sol<=5 && Sol>=1)
           {
             return "#34c96b"
           }
@@ -92,14 +89,14 @@ export default class FirstScreeen extends React.Component{
             
             <ScrollView keyboardShouldPersistTaps='handled' contentContainerStyle={{alignItems:'center',backgroundColor:'#fff'}} >
                 
-                <Text style={{marginTop:30}}>
+                <Text style={{marginTop:20}}>
                     HAZARD 1
                 </Text>
                 <View style={{flex:1.5,flexDirection:"row",justifyContent:"space-between",padding:20}}>
                     <View style={{flex:0.4,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <Text style={{margin:20}}>SEVERITY   : </Text>
-                    <Text style={{margin:20}}>Likelyhood : </Text>
-                    <Text style={{margin:20}}>Risk Level   : </Text>
+                    <Text style={{margin:10}}>SEVERITY   : </Text>
+                    <Text style={{margin:10}}>Likelyhood : </Text>
+                    <Text style={{margin:10}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
                     <TextInput keyboardType='numeric' onSubmitEditing={Keyboard.dismiss} underlineColorAndroid='transparent' style={styles.txtinput} 
@@ -114,14 +111,14 @@ export default class FirstScreeen extends React.Component{
                     
                     </View>                   
                 </View>   
-                <Text style={{marginTop:30}}>
+                <Text style={{marginTop:10}}>
                     HAZARD 2
                 </Text>
                 <View style={{flex:1.5,flexDirection:"row",justifyContent:"space-between",padding:20}}>
                     <View style={{flex:0.4,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <Text style={{margin:20}}>SEVERITY   : </Text>
-                    <Text style={{margin:20}}>Likelyhood : </Text>
-                    <Text style={{margin:20}}>Risk Level   : </Text>
+                    <Text style={{margin:10}}>SEVERITY   : </Text>
+                    <Text style={{margin:10}}>Likelyhood : </Text>
+                    <Text style={{margin:10}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
                     <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={styles.txtinput} 
@@ -137,14 +134,14 @@ export default class FirstScreeen extends React.Component{
                     </View>                   
                 </View>   
                   
-                <Text>
+                <Text style={{marginTop:10}}>
                     HAZARD 3
                 </Text>
                 <View style={{flex:1.5,flexDirection:"row",justifyContent:"space-between",padding:20}}>
                     <View style={{flex:0.4,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <Text style={{margin:20}}>SEVERITY   : </Text>
-                    <Text style={{margin:20}}>Likelyhood : </Text>
-                    <Text style={{margin:20}}>Risk Level   : </Text>
+                    <Text style={{margin:10}}>SEVERITY   : </Text>
+                    <Text style={{margin:10}}>Likelyhood : </Text>
+                    <Text style={{margin:10}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
                     <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
@@ -158,14 +155,14 @@ export default class FirstScreeen extends React.Component{
                     />                   
                     </View>                   
                 </View>                     
-                <Text>
+                <Text style={{marginTop:10}}>
                     HAZARD 4
                 </Text>
                 <View style={{flex:1.5,flexDirection:"row",justifyContent:"space-between",padding:20}}>
                     <View style={{flex:0.4,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <Text style={{margin:20}}>SEVERITY   : </Text>
-                    <Text style={{margin:20}}>Likelyhood : </Text>
-                    <Text style={{margin:20}}>Risk Level   : </Text>
+                    <Text style={{margin:10}}>SEVERITY   : </Text>
+                    <Text style={{margin:10}}>Likelyhood : </Text>
+                    <Text style={{margin:10}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
                     <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
@@ -179,14 +176,14 @@ export default class FirstScreeen extends React.Component{
                     />                   
                     </View>                   
                 </View>                     
-                <Text>
+                <Text style={{marginTop:10}}>
                     HAZARD 5
                 </Text>
                 <View style={{flex:1.5,flexDirection:"row",justifyContent:"space-between",padding:20}}>
                     <View style={{flex:0.4,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <Text style={{margin:20}}>SEVERITY   : </Text>
-                    <Text style={{margin:20}}>Likelyhood : </Text>
-                    <Text style={{margin:20}}>Risk Level   : </Text>
+                    <Text style={{margin:10}}>SEVERITY   : </Text>
+                    <Text style={{margin:10}}>Likelyhood : </Text>
+                    <Text style={{margin:10}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
                     <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
@@ -202,12 +199,14 @@ export default class FirstScreeen extends React.Component{
                 </View>   
                                                  
                    
-                <Button style={{padding:30,marginBottom:20}}
-                 title="Risk Reduction HoC 5x5"
+                <Button style={{padding:30,marginTop:15,marginBottom:20}}
+                 title="Risk Reduction HOc 5x5"
                  onPress={()=>this.props.navigation.navigate('Second',{a:this.state.Sol,b1:this.state.c,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor})}
                  />
-                 
 
+                 <View style={{height:40}}>
+
+                 </View>
                 
                 </ScrollView>
             
@@ -225,10 +224,10 @@ const styles = StyleSheet.create({
       
     },
     txtinput:{
-        height: 40,
+        height: 30,
         textAlign:'center',
         width:80, 
-        margin:10,
+        margin:5,
         borderRadius: 4,
         borderWidth: 1,
          borderColor: '#d6d7da'
