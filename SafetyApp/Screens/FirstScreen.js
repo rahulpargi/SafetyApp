@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Text,View,StyleSheet,TouchableHighlight,TextInput,Keyboard,ScrollView,Button} from 'react-native'
+import {Text,View,StyleSheet,TouchableHighlight,TextInput,Keyboard,ScrollView,Button,Picker} from 'react-native'
 
 import {Header,Icon} from 'react-native-elements'
 
@@ -26,7 +26,7 @@ export default class SecondScreeen extends React.Component{
     });
     constructor(props) {
         super(props);
-        this.state = {text1:'-',text2:'-',Sol:'',
+        this.state = {text1:'',text2:'',Sol:'',aa:'',
            a:'',b:'',c:'',
            H3text1:'-',H3text2:'-',H3Sol:'',
             H4text1:'-',H4text2:'-',H4Sol:'',
@@ -99,12 +99,30 @@ export default class SecondScreeen extends React.Component{
                     <Text style={{margin:10}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <TextInput keyboardType='numeric' onSubmitEditing={Keyboard.dismiss} underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(text1) => this.setState({text1:text1,text2:this.state.text2,Sol:this.Calculate(text1,this.state.text2),backgroundColor:this.random(this.Calculate(text1,this.state.text2))})}
-                    />
-                    <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(text2) => this.setState({text2:text2,text1:this.state.text1,Sol:this.Calculate(text2,this.state.text1),backgroundColor:this.random(this.Calculate(this.state.text1,text2))})}
-                    />
+                    
+                    <Picker
+                        selectedValue={this.state.text1}
+                        //style={styles.txtinput}
+                        onValueChange={(itemValue, itemIndex) => this.setState({text1:itemValue,text2:this.state.text2,Sol:this.Calculate(itemValue,this.state.text2),backgroundColor:this.random(this.Calculate(itemValue,this.state.text2))})}>
+                        <Picker.Item label="0" value="0" />
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                    </Picker>
+                    <Picker
+                        selectedValue={this.state.text2}
+                        //style={styles.txtinput}
+                        onValueChange={(itemValue1, itemIndex) => this.setState({text2:itemValue1,text1:this.state.text1,Sol:this.Calculate(itemValue1,this.state.text1),backgroundColor:this.random(this.Calculate(this.state.text1,itemValue1))})}>
+                        <Picker.Item label="0" value="0" />
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                    </Picker>
+                    
                     <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.backgroundColor}]} 
                     value={`${this.Calculate(this.state.text1,this.state.text2)}`}
                     />                   
@@ -120,13 +138,32 @@ export default class SecondScreeen extends React.Component{
                     <Text style={{margin:10}}>Likelyhood : </Text>
                     <Text style={{margin:10}}>Risk Level   : </Text>
                     </View>
+                   
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <TextInput keyboardType='numeric'  underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(a) => this.setState({a:a,b:this.state.b,c:this.Calculate(a,this.state.b),H2backgroundColor:this.random(this.Calculate(a,this.state.b))})}
-                    />
-                    <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(b) => this.setState({b:b,a:this.state.a,c:this.Calculate(b,this.state.a),H2backgroundColor:this.random(this.Calculate(this.state.a,b))})}
-                    />
+                    <Picker
+                        selectedValue={this.state.a}
+                        //style={styles.txtinput}
+                        onValueChange={(itemValue3, itemIndex) => this.setState({a:itemValue3,b:this.state.b,c:this.Calculate(itemValue3,this.state.b),H2backgroundColor:this.random(this.Calculate(itemValue3,this.state.b))})}>
+                        <Picker.Item label="0" value="0" />
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                    </Picker>
+                    <Picker
+                        selectedValue={this.state.b}
+                        //style={styles.txtinput}
+                        onValueChange={(itemValue4, itemIndex) => this.setState({b:itemValue4,a:this.state.a,c:this.Calculate(itemValue4,this.state.a),H2backgroundColor:this.random(this.Calculate(this.state.a,itemValue4))})}>
+                        <Picker.Item label="0" value="0" />
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                    </Picker>
+                   
+                   
                     <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H2backgroundColor}]} 
                     value={`${this.Calculate(this.state.a,this.state.b)}`}
                     />                  
@@ -138,18 +175,37 @@ export default class SecondScreeen extends React.Component{
                     HAZARD 3
                 </Text>
                 <View style={{flex:1.5,flexDirection:"row",justifyContent:"space-between",padding:20}}>
+                
                     <View style={{flex:0.4,flexDirection:"column",justifyContent:"space-evenly"}}>
                     <Text style={{margin:10}}>SEVERITY   : </Text>
                     <Text style={{margin:10}}>Likelyhood : </Text>
                     <Text style={{margin:10}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H3text1) => this.setState({H3text1:H3text1,H3text2:this.state.H3text2,H2Sol:this.Calculate(H3text1,this.state.H3text2),H3backgroundColor:this.random(this.Calculate(H3text1,this.state.H3text2))})}
-                    />
-                    <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H3text2) => this.setState({H3text2:H3text2,H3text1:this.state.H3text1,H3Sol:this.Calculate(H3text2,this.state.H3text1),H3backgroundColor:this.random(this.Calculate(this.state.H3text1,H3text2))})}
-                    />
+                    <Picker
+                        selectedValue={this.state.H3text1}
+                        //style={styles.txtinput}
+                        onValueChange={(itemValue4, itemIndex) => this.setState({H3text1:itemValue4,H3text2:this.state.H3text2,H2Sol:this.Calculate(itemValue4,this.state.H3text2),H3backgroundColor:this.random(this.Calculate(itemValue4,this.state.H3text2))})}>
+                        <Picker.Item label="0" value="0" />
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                    </Picker>
+                    <Picker
+                        selectedValue={this.state.H3text2}
+                        //style={styles.txtinput}
+                        onValueChange={(itemValue5, itemIndex) =>  this.setState({H3text2:itemValue5,H3text1:this.state.H3text1,H3Sol:this.Calculate(itemValue5,this.state.H3text1),H3backgroundColor:this.random(this.Calculate(this.state.H3text1,itemValue5))})}>
+                        <Picker.Item label="0" value="0" />
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                    </Picker>
+                   
+                    
                     <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H3backgroundColor}]} 
                     value={`${this.Calculate(this.state.H3text1,this.state.H3text2)}`}
                     />                   
@@ -165,12 +221,30 @@ export default class SecondScreeen extends React.Component{
                     <Text style={{margin:10}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H4text1) => this.setState({H4text1:H4text1,H4text2:this.state.H4text2,H4Sol:this.Calculate(H4text1,this.state.H4text2),H4backgroundColor:this.random(this.Calculate(H4text1,this.state.H4text2))})}
-                    />
-                    <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H4text2) => this.setState({H4text2:H4text2,H4text1:this.state.H4text1,H4Sol:this.Calculate(H4text2,this.state.H4text1),H4backgroundColor:this.random(this.Calculate(this.state.H4text1,H4text2))})}
-                    />
+                    <Picker
+                        selectedValue={this.state.H4text1}
+                        //style={styles.txtinput}
+                        onValueChange={(itemValue6, itemIndex) => this.setState({H4text1:itemValue6,H4text2:this.state.H4text2,H4Sol:this.Calculate(itemValue6,this.state.H4text2),H4backgroundColor:this.random(this.Calculate(itemValue6,this.state.H4text2))})}>
+                        <Picker.Item label="0" value="0" />
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                    </Picker>
+                    <Picker
+                        selectedValue={this.state.H4text2}
+                        //style={styles.txtinput}
+                        onValueChange={(itemValue7, itemIndex) =>this.setState({H4text2:itemValue7,H4text1:this.state.H4text1,H4Sol:this.Calculate(itemValue7,this.state.H4text1),H4backgroundColor:this.random(this.Calculate(this.state.H4text1,itemValue7))})}>
+                        <Picker.Item label="0" value="0" />
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                    </Picker>
+                    
+                    
                     <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H4backgroundColor}]} 
                     value={`${this.Calculate(this.state.H4text1,this.state.H4text2)}`}
                     />                   
@@ -186,12 +260,30 @@ export default class SecondScreeen extends React.Component{
                     <Text style={{margin:10}}>Risk Level   : </Text>
                     </View>
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
-                    <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H5text1) => this.setState({H5text1:H5text1,H5text2:this.state.H5text2,H5Sol:this.Calculate(H5text1,this.state.H5text2),H5backgroundColor:this.random(this.Calculate(H5text1,this.state.H5text2))})}
-                    />
-                    <TextInput keyboardType='numeric' underlineColorAndroid='transparent' style={styles.txtinput} 
-                    onChangeText={(H5text2) => this.setState({H5text2:H5text2,H5text1:this.state.H5text1,H5Sol:this.Calculate(H5text2,this.state.H5text1),H5backgroundColor:this.random(this.Calculate(this.state.H5text1,H5text2))})}
-                    />
+                    <Picker
+                        selectedValue={this.state.H5text1}
+                        //style={styles.txtinput}
+                        onValueChange={(itemValue8, itemIndex) =>this.setState({H5text1:itemValue8,H5text2:this.state.H5text2,H5Sol:this.Calculate(itemValue8,this.state.H5text2),H5backgroundColor:this.random(this.Calculate(itemValue8,this.state.H5text2))})}>
+                        <Picker.Item label="0" value="0" />
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                    </Picker>
+                    <Picker
+                        selectedValue={this.state.H5text2}
+                        //style={styles.txtinput}
+                        onValueChange={(itemValue9, itemIndex) =>this.setState({H5text2:itemValue9,H5text1:this.state.H5text1,H5Sol:this.Calculate(itemValue9,this.state.H5text1),H5backgroundColor:this.random(this.Calculate(this.state.H5text1,itemValue9))})}>
+                        <Picker.Item label="0" value="0" />
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                    </Picker>
+                    
+                   
                     <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H5backgroundColor}]} 
                     value={`${this.Calculate(this.state.H5text1,this.state.H5text2)}`}
                     />                   

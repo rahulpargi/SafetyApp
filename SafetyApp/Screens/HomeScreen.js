@@ -44,17 +44,17 @@ export default class HomeScreen extends React.Component{
             
            <DatePicker 
            
-        style={{width:200,backgroundColor:"#fff",marginTop:10}}
-        date={this.state.date}
-        showIcon={false}    
-        placeholder="Select date"
-        format="YYYY-MM-DD"
-        minDate="2000-01-01"
-        maxDate="2020-01-31"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"    
-        onDateChange={(date) => {this.setState({date: date})}} 
-    
+            style={{width:200,backgroundColor:"#fff",marginTop:10}}
+            date={this.state.date}
+            showIcon={false}    
+            placeholder="Select date"
+            format="YYYY-MM-DD"
+            minDate="2000-01-01"
+            maxDate="2020-01-31"
+            confirmBtnText="Confirm"
+            cancelBtnText="Cancel"    
+            onDateChange={(date) => {this.setState({date: date})}} 
+        
          />
             
             <TouchableHighlight  onPress={()=>this.props.navigation.navigate('First')} style={{alignItems:'center',justifyContent:'center',padding:20,backgroundColor:'#4286f4',
