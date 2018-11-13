@@ -129,7 +129,7 @@ export default class ThirdScreen extends Component {
         
        
       <View>
-          <Button title="Back to RR 5x5 HoC" onPress={()=>this.props.navigation.navigate('First')}/>
+          <Button title="Back to RR 5x5 HoC" onPress={()=>this.props.navigation.navigate('Second')}/>
       </View>
         
       </View>
