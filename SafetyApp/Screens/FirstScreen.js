@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Text,View,StyleSheet,TouchableHighlight,TextInput,Keyboard,ScrollView,Button,Picker} from 'react-native'
+import {Text,View,StyleSheet,TouchableHighlight,AsyncStorage,TextInput,Keyboard,ScrollView,Button,Picker} from 'react-native'
 
 import {Header,Icon} from 'react-native-elements'
 
@@ -26,18 +26,128 @@ export default class SecondScreeen extends React.Component{
     });
     constructor(props) {
         super(props);
-        this.state = {text1:'',text2:'',Sol:'',aa:'',
-           a:'',b:'',c:'',
+        this.state = {text1:'',text2:'',H1Sol:'',aa:'',
+           H2text1:'',H2text2:'',H2Sol:'',
            H3text1:'-',H3text2:'-',H3Sol:'',
             H4text1:'-',H4text2:'-',H4Sol:'',
             H5text1:'-',H4text2:'-',H5Sol:''
         };
-        this.state = {backgroundColor:'#fff',H2backgroundColor:'#fff',H3backgroundColor:'#fff',
+        this.state = {H1backgroundColor:'#fff',H2backgroundColor:'#fff',H3backgroundColor:'#fff',
                     H4backgroundColor:'#fff',H5backgroundColor:'#fff'
                     };        
          
    }
-  
+   componentDidMount() {
+        
+    AsyncStorage.getItem("text1").then((value) => {
+     this.setState({"text1": value});
+    
+    }).done();
+    AsyncStorage.getItem("text2").then((value) => {
+        this.setState({"text2": value});
+        this.setState({H1backgroundColor:this.random(this.Calculate(this.state.text1,this.state.text2))});
+        this.setState({H1Sol:this.Calculate(this.state.text2,this.state.text1)});
+       }).done();
+       AsyncStorage.getItem("H2text1").then((value) => {
+        this.setState({"H2text1": value});
+       }).done();
+       AsyncStorage.getItem("H2text2").then((value) => {
+        this.setState({"H2text2": value});
+        this.setState({H2backgroundColor:this.random(this.Calculate(this.state.H2text1,this.state.H2text2))});
+        this.setState({H2Sol:this.Calculate(this.state.H2text2,this.state.H2text1)});
+       }).done();
+       AsyncStorage.getItem("H3text1").then((value) => {
+        this.setState({"H3text1": value});
+        
+       }).done();
+       AsyncStorage.getItem("H3text2").then((value) => {
+        this.setState({"H3text2": value});
+        this.setState({H3backgroundColor:this.random(this.Calculate(this.state.H3text1,this.state.H3text2))});
+        this.setState({H3Sol:this.Calculate(this.state.H3text2,this.state.H3text1)});
+       }).done();
+       AsyncStorage.getItem("H4text1").then((value) => {
+        this.setState({"H4text1": value});
+       }).done();
+       AsyncStorage.getItem("H4text2").then((value) => {
+        this.setState({"H4text2": value});
+        this.setState({H4backgroundColor:this.random(this.Calculate(this.state.H4text2,this.state.H4text2))});
+        this.setState({H4Sol:this.Calculate(this.state.H4text2,this.state.H4text1)});
+       }).done();
+       AsyncStorage.getItem("H5text1").then((value) => {
+        this.setState({"H5text1": value});
+       }).done();
+       AsyncStorage.getItem("H5text2").then((value) => {
+        this.setState({"H5text2": value});
+        this.setState({H5backgroundColor:this.random(this.Calculate(this.state.H5text1,this.state.H5text2))});
+        this.setState({H5Sol:this.Calculate(this.state.H5text2,this.state.H5text1)});
+       }).done();
+       
+      
+       
+       
+  } 
+  //onValueChange={(itemValue, itemIndex) => this.setState({text1:itemValue,text2:this.state.text2,Sol:this.Calculate(itemValue,this.state.text2),backgroundColor:this.random(this.Calculate(itemValue,this.state.text2))})}>
+  H1Severity(itemValue) {
+    
+        AsyncStorage.setItem("text1", itemValue);
+       this.setState({text1:itemValue,text2:this.state.text2,H1Sol:this.Calculate(itemValue,this.state.text2),
+        H1backgroundColor:this.random(this.Calculate(itemValue,this.state.text2))});
+        
+        
+      }
+      H1Likelyhood(itemValue1){
+        AsyncStorage.setItem("text2", itemValue1);
+        this.setState({text2:itemValue1,text1:this.state.text1,H1Sol:this.Calculate(itemValue1,this.state.text1),H1backgroundColor:this.random(this.Calculate(this.state.text1,itemValue1))});
+        
+    }
+      H2Severity(itemValue3){
+          
+        AsyncStorage.setItem("H2text1", itemValue3);
+        this.setState({H2text1:itemValue3,H2text2:this.state.H2text2,H2Sol:this.Calculate(itemValue3,this.state.H2text2),H2backgroundColor:this.random(this.Calculate(itemValue3,this.state.H2text2))});
+        AsyncStorage.setItem("H2backgroundColor",this.state.H2backgroundColor);
+    }
+      
+      H2Likelyhood(itemValue4){
+        AsyncStorage.setItem("H2text2", itemValue4);
+        this.setState({H2text2:itemValue4,H2text1:this.state.H2text1,H2Sol:this.Calculate(itemValue4,this.state.H2text1),H2backgroundColor:this.random(this.Calculate(this.state.H2text1,itemValue4))});
+        AsyncStorage.setItem("H2backgroundColor",this.state.H2backgroundColor);
+    }
+      H3Severity(itemValue4){
+        AsyncStorage.setItem("H3text1", itemValue4);
+        this.setState({H3text1:itemValue4,H3text2:this.state.H3text2,H3Sol:this.Calculate(itemValue4,this.state.H3text2),H3backgroundColor:this.random(this.Calculate(itemValue4,this.state.H3text2))});
+        AsyncStorage.setItem("H3backgroundColor",this.state.H3backgroundColor);
+    }
+    
+    H3Likelyhood(itemValue5){
+        AsyncStorage.setItem("H3text2", itemValue5);
+        this.setState({H3text2:itemValue5,H3text1:this.state.H3text1,H3Sol:this.Calculate(itemValue5,this.state.H3text1),H3backgroundColor:this.random(this.Calculate(this.state.H3text1,itemValue5))})
+        AsyncStorage.setItem("H3backgroundColor",this.state.H3backgroundColor);
+    }
+
+    H4Severity(itemValue6){
+        AsyncStorage.setItem("H4text1", itemValue6);
+        this.setState({H4text1:itemValue6,H4text2:this.state.H4text2,H4Sol:this.Calculate(itemValue6,this.state.H4text2),H4backgroundColor:this.random(this.Calculate(itemValue6,this.state.H4text2))});
+        AsyncStorage.setItem("H4backgroundColor",this.state.H4backgroundColor);
+    }
+    
+    H4Likelyhood(itemValue7){
+        AsyncStorage.setItem("H4text2", itemValue7);
+        this.setState({H4text2:itemValue7,H4text1:this.state.H4text1,H4Sol:this.Calculate(itemValue7,this.state.H4text1),H4backgroundColor:this.random(this.Calculate(this.state.H4text1,itemValue7))})
+        AsyncStorage.setItem("H4backgroundColor",this.state.H4backgroundColor);
+    }
+    H5Severity(itemValue8){
+        AsyncStorage.setItem("H5text1", itemValue8);
+        this.setState({H5text1:itemValue8,H5text2:this.state.H5text2,H5Sol:this.Calculate(itemValue8,this.state.H5text2),H5backgroundColor:this.random(this.Calculate(itemValue8,this.state.H5text2))})
+        AsyncStorage.setItem("H5backgroundColor",this.state.H5backgroundColor);
+    }
+    
+    H5Likelyhood(itemValue9){
+        AsyncStorage.setItem("H5text2", itemValue9);
+        this.setState({H5text2:itemValue9,H5text1:this.state.H5text1,H5Sol:this.Calculate(itemValue9,this.state.H5text1),H5backgroundColor:this.random(this.Calculate(this.state.H5text1,itemValue9))})
+        AsyncStorage.setItem("H5backgroundColor",this.state.H5backgroundColor);
+    }
+
+
       random(Sol){
           
           if(Sol==''){
@@ -76,6 +186,7 @@ export default class SecondScreeen extends React.Component{
                 return '';
             }
             else{
+               
                 
                 return text1 * text2
             }
@@ -103,7 +214,9 @@ export default class SecondScreeen extends React.Component{
                     <Picker
                         selectedValue={this.state.text1}
                         //style={styles.txtinput}
-                        onValueChange={(itemValue, itemIndex) => this.setState({text1:itemValue,text2:this.state.text2,Sol:this.Calculate(itemValue,this.state.text2),backgroundColor:this.random(this.Calculate(itemValue,this.state.text2))})}>
+
+                     //  onValueChange={(itemValue, itemIndex) => this.setState({text1:itemValue,text2:this.state.text2,Sol:this.Calculate(itemValue,this.state.text2),backgroundColor:this.random(this.Calculate(itemValue,this.state.text2))})}>
+                     onValueChange={(itemValue, itemIndex) => this.H1Severity(itemValue)}>
                         <Picker.Item label="0" value="0" />
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
@@ -114,7 +227,7 @@ export default class SecondScreeen extends React.Component{
                     <Picker
                         selectedValue={this.state.text2}
                         //style={styles.txtinput}
-                        onValueChange={(itemValue1, itemIndex) => this.setState({text2:itemValue1,text1:this.state.text1,Sol:this.Calculate(itemValue1,this.state.text1),backgroundColor:this.random(this.Calculate(this.state.text1,itemValue1))})}>
+                        onValueChange={(itemValue1, itemIndex) => this.H1Likelyhood(itemValue1)}>
                         <Picker.Item label="0" value="0" />
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
@@ -123,9 +236,10 @@ export default class SecondScreeen extends React.Component{
                         <Picker.Item label="5" value="5" />
                     </Picker>
                     
-                    <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.backgroundColor}]} 
+                               
+                    <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H1backgroundColor}]} 
                     value={`${this.Calculate(this.state.text1,this.state.text2)}`}
-                    />                   
+                    />         
                     
                     </View>                   
                 </View>   
@@ -141,9 +255,9 @@ export default class SecondScreeen extends React.Component{
                    
                     <View style={{flex:0.3,flexDirection:"column",justifyContent:"space-evenly"}}>
                     <Picker
-                        selectedValue={this.state.a}
+                        selectedValue={this.state.H2text1}
                         //style={styles.txtinput}
-                        onValueChange={(itemValue3, itemIndex) => this.setState({a:itemValue3,b:this.state.b,c:this.Calculate(itemValue3,this.state.b),H2backgroundColor:this.random(this.Calculate(itemValue3,this.state.b))})}>
+                        onValueChange={(itemValue3, itemIndex) => this.H2Severity(itemValue3)}>
                         <Picker.Item label="0" value="0" />
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
@@ -152,9 +266,9 @@ export default class SecondScreeen extends React.Component{
                         <Picker.Item label="5" value="5" />
                     </Picker>
                     <Picker
-                        selectedValue={this.state.b}
+                        selectedValue={this.state.H2text2}
                         //style={styles.txtinput}
-                        onValueChange={(itemValue4, itemIndex) => this.setState({b:itemValue4,a:this.state.a,c:this.Calculate(itemValue4,this.state.a),H2backgroundColor:this.random(this.Calculate(this.state.a,itemValue4))})}>
+                        onValueChange={(itemValue4, itemIndex) =>this.H2Likelyhood(itemValue4)}>
                         <Picker.Item label="0" value="0" />
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
@@ -165,7 +279,7 @@ export default class SecondScreeen extends React.Component{
                    
                    
                     <TextInput editable={false}  underlineColorAndroid='transparent' style={[styles.txtinput, {backgroundColor: this.state.H2backgroundColor}]} 
-                    value={`${this.Calculate(this.state.a,this.state.b)}`}
+                    value={`${this.Calculate(this.state.H2text1,this.state.H2text2)}`}
                     />                  
                     
                     </View>                   
@@ -185,7 +299,7 @@ export default class SecondScreeen extends React.Component{
                     <Picker
                         selectedValue={this.state.H3text1}
                         //style={styles.txtinput}
-                        onValueChange={(itemValue4, itemIndex) => this.setState({H3text1:itemValue4,H3text2:this.state.H3text2,H2Sol:this.Calculate(itemValue4,this.state.H3text2),H3backgroundColor:this.random(this.Calculate(itemValue4,this.state.H3text2))})}>
+                        onValueChange={(itemValue4, itemIndex) => this.H3Severity(itemValue4)}>
                         <Picker.Item label="0" value="0" />
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
@@ -196,7 +310,7 @@ export default class SecondScreeen extends React.Component{
                     <Picker
                         selectedValue={this.state.H3text2}
                         //style={styles.txtinput}
-                        onValueChange={(itemValue5, itemIndex) =>  this.setState({H3text2:itemValue5,H3text1:this.state.H3text1,H3Sol:this.Calculate(itemValue5,this.state.H3text1),H3backgroundColor:this.random(this.Calculate(this.state.H3text1,itemValue5))})}>
+                        onValueChange={(itemValue5, itemIndex) => this.H3Likelyhood(itemValue5) }>
                         <Picker.Item label="0" value="0" />
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
@@ -224,7 +338,7 @@ export default class SecondScreeen extends React.Component{
                     <Picker
                         selectedValue={this.state.H4text1}
                         //style={styles.txtinput}
-                        onValueChange={(itemValue6, itemIndex) => this.setState({H4text1:itemValue6,H4text2:this.state.H4text2,H4Sol:this.Calculate(itemValue6,this.state.H4text2),H4backgroundColor:this.random(this.Calculate(itemValue6,this.state.H4text2))})}>
+                        onValueChange={(itemValue6, itemIndex) => this.H4Severity(itemValue6)}>
                         <Picker.Item label="0" value="0" />
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
@@ -235,7 +349,7 @@ export default class SecondScreeen extends React.Component{
                     <Picker
                         selectedValue={this.state.H4text2}
                         //style={styles.txtinput}
-                        onValueChange={(itemValue7, itemIndex) =>this.setState({H4text2:itemValue7,H4text1:this.state.H4text1,H4Sol:this.Calculate(itemValue7,this.state.H4text1),H4backgroundColor:this.random(this.Calculate(this.state.H4text1,itemValue7))})}>
+                        onValueChange={(itemValue7, itemIndex) =>this.H4Likelyhood(itemValue7)}>
                         <Picker.Item label="0" value="0" />
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
@@ -263,7 +377,7 @@ export default class SecondScreeen extends React.Component{
                     <Picker
                         selectedValue={this.state.H5text1}
                         //style={styles.txtinput}
-                        onValueChange={(itemValue8, itemIndex) =>this.setState({H5text1:itemValue8,H5text2:this.state.H5text2,H5Sol:this.Calculate(itemValue8,this.state.H5text2),H5backgroundColor:this.random(this.Calculate(itemValue8,this.state.H5text2))})}>
+                        onValueChange={(itemValue8, itemIndex) =>this.H5Severity(itemValue8)}>
                         <Picker.Item label="0" value="0" />
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
@@ -274,7 +388,7 @@ export default class SecondScreeen extends React.Component{
                     <Picker
                         selectedValue={this.state.H5text2}
                         //style={styles.txtinput}
-                        onValueChange={(itemValue9, itemIndex) =>this.setState({H5text2:itemValue9,H5text1:this.state.H5text1,H5Sol:this.Calculate(itemValue9,this.state.H5text1),H5backgroundColor:this.random(this.Calculate(this.state.H5text1,itemValue9))})}>
+                        onValueChange={(itemValue9, itemIndex) =>this.H5Likelyhood(itemValue9)}>
                         <Picker.Item label="0" value="0" />
                         <Picker.Item label="1" value="1" />
                         <Picker.Item label="2" value="2" />
@@ -293,7 +407,7 @@ export default class SecondScreeen extends React.Component{
                    
                 <Button style={{padding:30,marginTop:15,marginBottom:20}}
                  title="Risk Reduction HOc 5x5"
-                 onPress={()=>this.props.navigation.navigate('Second',{a:this.state.Sol,b1:this.state.c,c:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor})}
+                 onPress={()=>this.props.navigation.navigate('Second',{H2text1:this.state.H1Sol,b1:this.state.H2Sol,H2Sol:this.state.H3Sol,d:this.state.H4Sol,e:this.state.H5Sol,a1:this.state.H1backgroundColor,a2:this.state.H2backgroundColor,a3:this.state.H3backgroundColor,a4:this.state.H4backgroundColor,a5:this.state.H5backgroundColor})}
                  />
 
                  <View style={{height:40}}>

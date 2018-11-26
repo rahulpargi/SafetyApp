@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import {Switch,Text,View,KeyboardAvoidingView,ScrollView,TouchableOpacity,Image,Button,StyleSheet,TextInput,TouchableHighlight} from 'react-native';
+import {Switch,Text,View,KeyboardAvoidingView,AsyncStorage,ScrollView,TouchableOpacity,Image,Button,StyleSheet,TextInput,TouchableHighlight} from 'react-native';
 import {Header, Icon} from 'react-native-elements'
 import DatePicker from 'react-native-datepicker';
 
@@ -10,10 +10,46 @@ export default class HomeScreen extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-          isHidden: true,
+          isHidden: true,title:null,username:null,date:null
         };
       }
-    
+     
+      componentDidMount() {
+        
+        AsyncStorage.getItem("title").then((value) => {
+         this.setState({"title": value});
+        }).done();
+        AsyncStorage.getItem("username").then((value) => {
+            this.setState({"username": value});
+        }).done();
+        AsyncStorage.getItem("date").then((value) => {
+            this.setState({"date": value});
+        }).done();
+      }
+      
+      saveData(value) {
+         
+        AsyncStorage.setItem("title", value);
+       this.setState({"title": value});
+      
+      }
+      saveUser(value) {
+        AsyncStorage.setItem("username", value);
+        this.setState({"username": value});
+        
+      }
+      saveDate(value) {
+         
+        AsyncStorage.setItem("date", value);
+        this.setState({"date": value});
+      }
+
+      clearData(){
+          AsyncStorage.clear();
+          this.setState({"title": null});
+          this.setState({"username": null});
+          this.setState({"date": null});
+      }
     static navigationOptions =({navigation})=> ({
         
           headerStyle: {display:"none"},
@@ -34,13 +70,23 @@ export default class HomeScreen extends React.Component{
             <ScrollView >
             
             <View style={styles.container}>  
-           
+            <TouchableHighlight onPress={()=>this.clearData()}  style={{alignItems:'center',justifyContent:'center',padding:10,backgroundColor:'#4f86f4',
+                                 
+                                 borderColor: '#fff',
+                                 marginTop:50,
+                                 marginLeft:10,
+                                 width:80,
+                                 alignSelf:"flex-start"
+                                
+                                }}>
+                <Text style={{fontSize:12,color:'#fff'}}>NEW</Text>
+            </TouchableHighlight>
             <Text style={styles.Heading}>Risk Assessment Matrix</Text>
             
            <TextInput placeholder="Title"  underlineColorAndroid='transparent'
-            style={styles.txt}></TextInput> 
+            style={styles.txt} onChangeText={(text) => this.saveData(text)} value={this.state.title} ></TextInput> 
             <TextInput placeholder="User Name" underlineColorAndroid='transparent'
-            style={styles.txt}></TextInput>
+            style={styles.txt} onChangeText={(text) => this.saveUser(text)} value={this.state.username}></TextInput>
             
            <DatePicker 
            
@@ -53,7 +99,7 @@ export default class HomeScreen extends React.Component{
             maxDate="2020-01-31"
             confirmBtnText="Confirm"
             cancelBtnText="Cancel"    
-            onDateChange={(date) => {this.setState({date: date})}} 
+            onDateChange={(date) => this.saveDate(date)} 
         
          />
             
@@ -74,7 +120,9 @@ export default class HomeScreen extends React.Component{
                                  borderRadius: 40,
                                  borderWidth: 1,
                                  borderColor: '#fff',
+                                 
                                  margin:20,
+                                 marginBottom:31,
                                  width:160
                                 
                                 }}>
