@@ -10,7 +10,7 @@ export default class SecondScreeen extends React.Component{
         header:(<Header
             statusBarProps={{ barStyle: 'light-content' }}
             barStyle="light-content" // or directly
-            outerContainerStyles={{height:80}}
+            outerContainerStyles={{height:100}}
             leftComponent={<Icon name="arrow-back" color="#fff" underlayColor='transparent' onPress={()=>navigation.navigate('Home')}></Icon>}
             centerComponent={{ text: 'RAM CS 5x5', style: { color: '#fff',fontWeight:"bold",fontSize:16 } }}
             containerStyle={{

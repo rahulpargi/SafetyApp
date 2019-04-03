@@ -73,7 +73,7 @@ export default class HomeScreen extends React.Component{
             <TouchableHighlight onPress={()=>this.clearData()}  style={{alignItems:'center',justifyContent:'center',padding:10,backgroundColor:'#4f86f4',
                                  
                                  borderColor: '#fff',
-                                 marginTop:50,
+                                 marginTop:60,
                                  marginLeft:10,
                                  width:80,
                                  alignSelf:"flex-start"
@@ -173,6 +173,7 @@ export default class HomeScreen extends React.Component{
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        height:798,
         backgroundColor: '#327bf2',
         alignItems: 'center',       
     },
